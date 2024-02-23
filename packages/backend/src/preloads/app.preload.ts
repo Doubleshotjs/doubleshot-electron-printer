@@ -1,5 +1,5 @@
 import { contextBridge, webFrame, ipcRenderer } from 'electron'
-import { GET_DEVICE_SCALE_FACTOR, GET_PRINTER_LIST } from './ipc'
+import { GET_DEVICE_SCALE_FACTOR, GET_PRINTER_LIST } from '../ipc'
 
 contextBridge.exposeInMainWorld(
   'electron',
@@ -25,9 +25,4 @@ contextBridge.exposeInMainWorld(
     },
     getPrinterList: () => ipcRenderer.invoke(GET_PRINTER_LIST),
   },
-)
-
-contextBridge.exposeInMainWorld(
-  'isElectron',
-  true
 )

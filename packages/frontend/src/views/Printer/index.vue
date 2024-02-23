@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>Printer</div>
 </template>
 
 <script setup lang="ts">

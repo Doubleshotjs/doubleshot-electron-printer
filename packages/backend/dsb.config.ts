@@ -7,7 +7,10 @@ export default defineConfig({
   external: ['electron'],
   electron: {
     preload: {
-      entry: './src/preload.ts'
+      entry: [
+        './src/preloads/app.preload.ts',
+        './src/preloads/printer.preload.ts'
+      ]
     },
     rendererUrl: 'http://localhost:5173',
     waitTimeout: 5000,

@@ -29,10 +29,10 @@
     },
   },
   "include": [
-    "../backend/preload.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "src/**/*.d.ts",
     "auto-imports.d.ts",
     "components.d.ts"
   ],

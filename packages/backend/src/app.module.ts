@@ -15,7 +15,7 @@ import { AppService } from './app.service'
         autoHideMenuBar: true,
         webPreferences: {
           contextIsolation: true,
-          preload: join(__dirname, 'preload.js')
+          preload: join(__dirname, 'app.preload.js')
         }
       })
 
