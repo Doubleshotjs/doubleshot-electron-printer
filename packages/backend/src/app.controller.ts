@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common'
 import { IpcHandle, IpcOn } from '@doubleshot/nest-electron'
 import { AppService } from './app.service'
-import { GET_PRINTER_LIST, HANDLE_PRINT } from './ipc'
+import { GET_PRINTER_LIST, PREPARE_PRINT, HANDLE_PRINT } from './ipc'
 import { Payload } from '@nestjs/microservices'
 import type { PrintInfo } from '@shared/types'
 
@@ -16,8 +16,13 @@ export class AppController {
     return this.appService.getPrinterList()
   }
 
+  @IpcOn(PREPARE_PRINT)
+  preparePrint(@Payload() info: PrintInfo) {
+    this.appService.preparePrint(info)
+  }
+
   @IpcOn(HANDLE_PRINT)
-  handlePrint(@Payload() info: PrintInfo) {
-    this.appService.handlePrint(info)
+  handlePrint() {
+    this.appService.handlePrint()
   }
 }

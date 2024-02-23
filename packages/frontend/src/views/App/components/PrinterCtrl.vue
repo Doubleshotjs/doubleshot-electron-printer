@@ -17,14 +17,13 @@
             </var-button>
           </div>
         </var-space>
-
       </div>
     </template>
   </var-card>
 </template>
 
 <script setup lang="ts">
-import { getPrinterList, handlePrint } from '@src/electron'
+import { getPrinterList, preparePrint } from '@src/electron'
 import { ref } from 'vue';
 import { onBeforeMount } from 'vue';
 import { Snackbar } from '@varlet/ui'
@@ -48,6 +47,6 @@ function doPrint() {
     return Snackbar.error('Please input content')
   }
 
-  handlePrint(toRaw(printInfo.value))
+  preparePrint(toRaw(printInfo.value))
 }
 </script>

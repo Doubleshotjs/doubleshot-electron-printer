@@ -1,5 +1,5 @@
 <template>
-  <canvas ref="qrCanvasRef" />
+  <canvas ref="canvasRef" />
 </template>
 
 <script setup lang="ts">
@@ -10,14 +10,14 @@ const props = defineProps<{
   content: string
 }>()
 
-const qrCanvasRef = ref<HTMLCanvasElement | null>(null)
+const canvasRef = ref<HTMLCanvasElement | null>(null)
 watch(
-  () => [qrCanvasRef.value, props.content],
+  () => [canvasRef.value, props.content],
   () => {
-    if (!qrCanvasRef.value || !props.content)
+    if (!canvasRef.value || !props.content)
       return
 
-    QRCode.toCanvas(qrCanvasRef.value, props.content, {
+    QRCode.toCanvas(canvasRef.value, props.content, {
       margin: 0,
       width: 128,
     })
