@@ -1,5 +1,7 @@
 {
-  "name": "doubleshot-vue-nest-starter",
+  "name": "doubleshot-electron-printer",
+  "description": "Electron printer use doubleshot",
+  "author": "ArcherGu (https://github.com/ArcherGu/)",
   "private": true,
   "version": "0.0.0",
   "scripts": {

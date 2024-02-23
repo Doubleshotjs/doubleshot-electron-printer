@@ -8,7 +8,7 @@ function resolve(path) {
  * @see https://www.electron.build/configuration/configuration
  */
 const config = {
-  productName: 'Doubleshot App',
+  productName: 'E-Printer',
   directories: {
     output: resolve('dist'),
   },
