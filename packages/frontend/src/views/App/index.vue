@@ -1,28 +1,22 @@
 <script setup lang="ts">
-import { useZoomFactor, getPrinterList } from '@src/electron'
-const { update: updateZoomFactor } = useZoomFactor()
+import { ref } from 'vue';
+import { PrinterCtrl, Preview } from './components'
+import type { PrintInfo } from '@shared/types';
 
-setTimeout(() => {
-  updateZoomFactor()
-}, 200);
-
-window.addEventListener('resize', () => {
-  updateZoomFactor()
+const printInfo = ref<PrintInfo>({
+  deviceName: '',
+  content: 'Hello, World!'
 })
-
-getPrinterList().then((list) => {
-  console.log('Printer list:', list)
-})
-
-const handleClick = () => {
-  console.log('Hello')
-}
 </script>
 
 <template>
-  <var-button @click="handleClick">
-    <span class="text-2xl text-green-300">
-      <i-gg-hello />
-      说你好</span>
-  </var-button>
+  <div class="w-full h-full p-20px flex box-border">
+    <div class="w-300px mr-20px">
+      <PrinterCtrl v-model:print-info="printInfo" />
+    </div>
+
+    <div class="flex-1">
+      <Preview :content="printInfo.content" />
+    </div>
+  </div>
 </template>

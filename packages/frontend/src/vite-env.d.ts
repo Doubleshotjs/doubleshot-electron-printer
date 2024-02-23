@@ -3,7 +3,7 @@
 interface Window {
   isPrinter?: boolean
   electron: {
-    useZoomFactor(): { update: () => Promise<void> }
-    getPrinterList(): Promise<import('electron').PrinterInfo[]>
+    getPrinterList(): Promise<import('@shared/types').PrinterInfo[]>
+    handlePrint(info: import('@shared/types').PrintInfo): void
   },
 }

@@ -1,23 +1,33 @@
 {
   "compilerOptions": {
+    "incremental": true,
     "target": "ESNext",
+    "jsx": "preserve",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "strict": false,
-    "jsx": "preserve",
-    "sourceMap": true,
+    "paths": {
+      "@src/*": [
+        "src/*"
+      ],
+      "@shared/*": [
+        "../shared/*"
+      ]
+    },
     "resolveJsonModule": true,
-    "esModuleInterop": true,
+    "strict": false,
     "noImplicitAny": false,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "removeComments": true,
+    "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "incremental": true,
+    "esModuleInterop": true,
     "skipLibCheck": true
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "../shared/**/*.ts",
   ]
 }

@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@varlet/ui": "^3.0.3",
+    "qrcode": "^1.5.3",
     "vue": "^3.4.19"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.185",
+    "@types/qrcode": "^1.5.5",
     "@unocss/transformer-directives": "^0.58.5",
     "@varlet/import-resolver": "^3.0.3",
     "@vitejs/plugin-vue": "^5.0.4",

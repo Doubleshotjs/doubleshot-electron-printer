@@ -25,7 +25,10 @@
     "paths": {
       "@src/*": [
         "src/*"
-      ]
+      ],
+      "@shared/*": [
+        "../shared/*"
+      ],
     },
   },
   "include": [
@@ -34,7 +37,8 @@
     "src/**/*.vue",
     "src/**/*.d.ts",
     "auto-imports.d.ts",
-    "components.d.ts"
+    "components.d.ts",
+    "../shared/**/*.ts",
   ],
   "references": [
     {

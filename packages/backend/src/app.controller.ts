@@ -1,7 +1,9 @@
 import { Controller } from '@nestjs/common'
-import { IpcHandle } from '@doubleshot/nest-electron'
+import { IpcHandle, IpcOn } from '@doubleshot/nest-electron'
 import { AppService } from './app.service'
-import { GET_DEVICE_SCALE_FACTOR, GET_PRINTER_LIST } from './ipc'
+import { GET_PRINTER_LIST, HANDLE_PRINT } from './ipc'
+import { Payload } from '@nestjs/microservices'
+import type { PrintInfo } from '@shared/types'
 
 @Controller()
 export class AppController {
@@ -9,13 +11,13 @@ export class AppController {
     private readonly appService: AppService
   ) { }
 
-  @IpcHandle(GET_DEVICE_SCALE_FACTOR)
-  getDeviceScaleFactor() {
-    return this.appService.getScaleFactor()
-  }
-
   @IpcHandle(GET_PRINTER_LIST)
   getPrinterList() {
     return this.appService.getPrinterList()
+  }
+
+  @IpcOn(HANDLE_PRINT)
+  handlePrint(@Payload() info: PrintInfo) {
+    this.appService.handlePrint(info)
   }
 }

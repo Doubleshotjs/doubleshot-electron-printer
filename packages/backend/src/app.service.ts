@@ -1,7 +1,7 @@
 import { Window } from '@doubleshot/nest-electron'
 import { Injectable } from '@nestjs/common'
-import { screen, BrowserWindow, app, type PrinterInfo } from 'electron'
-
+import type { PrintInfo, PrinterInfo } from '@shared/types'
+import { screen, BrowserWindow, app } from 'electron'
 
 @Injectable()
 export class AppService {
@@ -21,5 +21,17 @@ export class AppService {
   public async getPrinterList(): Promise<PrinterInfo[]> {
     const printers = await this.mainWin.webContents.getPrintersAsync()
     return printers
+  }
+
+  public handlePrint(info: PrintInfo) {
+    console.log('handlePrint', info)
+    const { deviceName } = info
+    this.mainWin.webContents.print({
+      silent: true,
+      deviceName,
+      // margins: {
+      //   marginType: 'printableArea'
+      // }
+    })
   }
 }
