@@ -1,8 +1,10 @@
+import type { PrinterInfo } from 'electron'
+
 declare global {
   interface Window {
     electron: {
       useZoomFactor(): { update: () => Promise<void> }
-      saveImageToFile(image: string): Promise<any>
+      getPrinterList(): Promise<PrinterInfo[]>
     },
     isElectron: boolean
   }

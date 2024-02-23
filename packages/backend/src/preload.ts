@@ -1,8 +1,5 @@
 import { contextBridge, webFrame, ipcRenderer } from 'electron'
-
-function getDeviceScaleFactor(): Promise<number> {
-  return ipcRenderer.invoke("device-scale-factor")
-}
+import { GET_DEVICE_SCALE_FACTOR, GET_PRINTER_LIST } from './ipc'
 
 contextBridge.exposeInMainWorld(
   'electron',
@@ -16,7 +13,7 @@ contextBridge.exposeInMainWorld(
       const update = async () => {
         const height = window.innerHeight
         const dpr = window.devicePixelRatio
-        if (scaleFactor === 0) scaleFactor = await getDeviceScaleFactor()
+        if (scaleFactor === 0) scaleFactor = await ipcRenderer.invoke(GET_DEVICE_SCALE_FACTOR)
 
         const factor = (height / DESIGN_HEIGHT) * (dpr / DESIGN_DPR) * (DESIGN_SCALE_FACTOR / scaleFactor)
         webFrame.setZoomFactor(factor)
@@ -26,7 +23,7 @@ contextBridge.exposeInMainWorld(
         update
       }
     },
-    saveImageToFile: (image: string): Promise<any> => ipcRenderer.invoke("save-image", image),
+    getPrinterList: () => ipcRenderer.invoke(GET_PRINTER_LIST),
   },
 )
 
