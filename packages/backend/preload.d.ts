@@ -6,7 +6,8 @@ declare global {
       useZoomFactor(): { update: () => Promise<void> }
       getPrinterList(): Promise<PrinterInfo[]>
     },
-    isElectron: boolean
+    isElectron?: boolean
+    isPrinter?: boolean
   }
 }
 

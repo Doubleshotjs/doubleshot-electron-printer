@@ -112,7 +112,7 @@ const saveImage = () => {
 
   const img = drawPad.value.toDataURL('image/png')
   if (window.isElectron) {
-    window.electron.saveImageToFile(img)
+    console.log('Save image to file:', img)
   } else {
     const a = document.createElement('a')
     a.href = img

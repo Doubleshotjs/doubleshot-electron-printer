@@ -9,6 +9,7 @@
     "build": "rimraf dist && dsr build"
   },
   "devDependencies": {
-    "@doubleshot/runner": "^0.0.11"
+    "@doubleshot/runner": "^0.0.11",
+    "@types/node": "20.11.19"
   }
 }

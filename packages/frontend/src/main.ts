@@ -1,4 +1,10 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import 'virtual:uno.css'
+import '@src/styles/index.scss'
 
-createApp(App).mount('#app')
+async function start() {
+  const isPrinter = window.isElectron && window.isPrinter
+  const { bootstraps } = await (isPrinter ? import('./bootstraps/printer') : import('./bootstraps/app'))
+  bootstraps()
+}
+
+start()
