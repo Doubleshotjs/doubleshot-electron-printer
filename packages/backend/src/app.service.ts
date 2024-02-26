@@ -64,13 +64,20 @@ export class AppService {
       return
     }
 
-    const { deviceName } = this.currentPrintInfo
+    const {
+      deviceName,
+      landscape = false,
+      margins = { marginType: 'default' },
+      pageSize = { name: 'A4', size: { width: 300, height: 200 } },
+      dpi = 300
+    } = this.currentPrintInfo
     this.printView.webContents.print({
       silent: true,
       deviceName,
-      // margins: {
-      //   marginType: 'printableArea'
-      // }
+      landscape,
+      margins,
+      pageSize: pageSize.name === 'Custom' ? pageSize.size : pageSize.name,
+      dpi: { horizontal: dpi, vertical: dpi }
     })
 
     this.currentPrintInfo = null

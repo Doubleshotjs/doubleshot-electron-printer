@@ -4,19 +4,29 @@ import { PrinterCtrl, Preview } from './components'
 import type { PrintInfo } from '@shared/types';
 
 const printInfo = ref<PrintInfo>({
+  content: 'Hello, World!',
+  fontSize: 18,
   deviceName: '',
-  content: 'Hello, World!'
+  landscape: false,
+  margins: {
+    marginType: 'default',
+  },
+  pageSize: {
+    name: 'A4',
+    size: { width: 300, height: 200 },
+  },
+  dpi: 300,
 })
 </script>
 
 <template>
-  <div class="w-full h-full p-20px flex box-border">
-    <div class="w-300px mr-20px">
+  <div class="w-full h-full flex box-border">
+    <div class="w-300px">
       <PrinterCtrl v-model:print-info="printInfo" />
     </div>
 
-    <div class="flex-1">
-      <Preview :content="printInfo.content" />
+    <div style="width: calc(100% - 300px);">
+      <Preview :content="printInfo.content" :page-size="printInfo.pageSize" />
     </div>
   </div>
 </template>

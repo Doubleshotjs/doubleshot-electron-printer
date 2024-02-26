@@ -7,16 +7,15 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Clear: typeof import('./src/components/Icons/Clear.vue')['default']
-    Doc: typeof import('./src/components/Icons/Doc.vue')['default']
-    Github: typeof import('./src/components/Icons/Github.vue')['default']
+    IFluentDismiss12Regular: typeof import('~icons/fluent/dismiss12-regular')['default']
+    IFluentDismiss24Regular: typeof import('~icons/fluent/dismiss24-regular')['default']
+    IFluentDismiss28Regular: typeof import('~icons/fluent/dismiss28-regular')['default']
     IFluentPrint28Regular: typeof import('~icons/fluent/print28-regular')['default']
-    IGgHello: typeof import('~icons/gg/hello')['default']
-    Paint: typeof import('./src/components/Paint.vue')['default']
-    Save: typeof import('./src/components/Icons/Save.vue')['default']
     VarButton: typeof import('@varlet/ui')['_ButtonComponent']
     VarCard: typeof import('@varlet/ui')['_CardComponent']
+    VarCounter: typeof import('@varlet/ui')['_CounterComponent']
     VarInput: typeof import('@varlet/ui')['_InputComponent']
+    VarInputNumber: typeof import('@varlet/ui')['_InputNumberComponent']
     VarOption: typeof import('@varlet/ui')['_OptionComponent']
     VarSelect: typeof import('@varlet/ui')['_SelectComponent']
     VarSpace: typeof import('@varlet/ui')['_SpaceComponent']
