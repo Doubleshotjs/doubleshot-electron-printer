@@ -9,7 +9,7 @@ export interface PrintInfo {
   // print setting
   deviceName: string
   landscape: WebContentsPrintOptions['landscape']
-  margins: WebContentsPrintOptions['margins']
+  margins: Exclude<WebContentsPrintOptions['margins'], undefined>
   pageSize: {
     name: Exclude<WebContentsPrintOptions['pageSize'], Size> | 'Custom'
     size: { width: number, height: number }

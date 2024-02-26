@@ -2,27 +2,60 @@
   <div class="print-ctrl">
     <div class="flex-1 px-25px py-20px">
       <var-space direction="column" size="large">
+        <!-- Device -->
         <var-select placeholder="Printer" v-model="printInfo.deviceName">
           <var-option v-for="printer in printerList" :key="printer.name" :value="printer.name"
             :label="printer.displayName" />
         </var-select>
 
+        <!-- Content -->
         <var-input placeholder="Content" v-model="printInfo.content" />
 
-        <var-select placeholder="Page Size" v-model="printInfo.pageSize.name">
-          <var-option v-for="opt in pageSizeOpts" :key="opt.value" :value="opt.value" :label="opt.label" />
-        </var-select>
+        <!-- Page Size -->
+        <div>
+          <var-select placeholder="Page Size" v-model="printInfo.pageSize.name">
+            <var-option v-for="opt in pageSizeOpts" :key="opt.value" :value="opt.value" :label="opt.label" />
+          </var-select>
 
-        <template v-if="printInfo.pageSize.name === 'Custom'">
-          <div class="text-13px text-stone-500">Width x Height</div>
-          <div class="flex items-center ">
-            <var-counter :decimal-length="0" :step="50" :min="100" :max="1000" v-model="printInfo.pageSize.size.width"
-              label="Width" />
-            <i-fluent-dismiss-12-regular class="mx-10px text-stone-500" />
-            <var-counter :decimal-length="0" :step="50" :min="100" :max="1000" v-model="printInfo.pageSize.size.height"
-              label="Height" />
-          </div>
-        </template>
+          <template v-if="printInfo.pageSize.name === 'Custom'">
+            <div class="text-13px text-stone-500 my-5px">Width x Height (px)</div>
+            <div class="flex items-center ">
+              <var-counter :decimal-length="0" :step="50" :min="100" :max="1000" v-model="printInfo.pageSize.size.width"
+                label="Width" />
+              <i-fluent-dismiss-12-regular class="mx-10px text-stone-500" />
+              <var-counter :decimal-length="0" :step="50" :min="100" :max="1000" v-model="printInfo.pageSize.size.height"
+                label="Height" />
+            </div>
+          </template>
+        </div>
+
+        <!-- Margins -->
+        <div>
+          <var-select placeholder="Margins" v-model="printInfo.margins.marginType">
+            <var-option value="default" label="Default" />
+            <var-option value="none" label="None" />
+            <var-option value="custom" label="Custom" />
+          </var-select>
+
+          <template v-if="printInfo.margins.marginType === 'custom'">
+            <div class="flex items-center my-5px">
+              <div class="text-13px text-stone-500 mr-5px w-50px">Top:</div>
+              <var-counter :decimal-length="0" :step="1" :min="0" :max="50" v-model="printInfo.margins.top" />
+            </div>
+            <div class="flex items-center my-5px">
+              <div class="text-13px text-stone-500 mr-5px w-50px">Right:</div>
+              <var-counter :decimal-length="0" :step="1" :min="0" :max="50" v-model="printInfo.margins.right" />
+            </div>
+            <div class="flex items-center my-5px">
+              <div class="text-13px text-stone-500 mr-5px w-50px">Bottom:</div>
+              <var-counter :decimal-length="0" :step="1" :min="0" :max="50" v-model="printInfo.margins.bottom" />
+            </div>
+            <div class="flex items-center my-5px">
+              <div class="text-13px text-stone-500 mr-5px w-50px">Left:</div>
+              <var-counter :decimal-length="0" :step="1" :min="0" :max="50" v-model="printInfo.margins.left" />
+            </div>
+          </template>
+        </div>
       </var-space>
     </div>
 

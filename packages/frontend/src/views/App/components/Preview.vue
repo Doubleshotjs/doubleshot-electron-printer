@@ -1,6 +1,6 @@
 <template>
   <div class="h-full w-full bg-stone-200 overflow-y-auto p-10px box-border">
-    <div :style="pageSizeStyle" class="bg-white shadow-xl mx-auto">
+    <div :style="pageSizeStyle" class="bg-white shadow-xl mx-auto box-border">
       <canvas ref="canvasRef" class="w-full h-full" />
     </div>
   </div>
@@ -16,6 +16,7 @@ import { computed } from 'vue';
 const props = defineProps<{
   content: string
   pageSize: PrintInfo['pageSize']
+  margins: PrintInfo['margins']
 }>()
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
@@ -34,11 +35,22 @@ watch(
 )
 
 const pageSizeStyle = computed(() => {
+  let style = ''
   if (props.pageSize.name === 'Custom') {
-    return `width: ${props.pageSize.size.width}px; height: ${props.pageSize.size.height}px;`
+    style = `width: ${props.pageSize.size.width}px; height: ${props.pageSize.size.height}px;`
   } else {
     const size = PAGE_SIZE[props.pageSize.name!]
-    return `width: ${size.width}cm; height: ${size.height}cm;`
+    style = `width: ${size.width}cm; height: ${size.height}cm;`
   }
+
+  if (props.margins.marginType === 'default') {
+    style += 'padding: 0.4in;'
+  } else if (props.margins.marginType === 'none') {
+    style += 'padding: 0;'
+  } else if (props.margins.marginType === 'custom') {
+    style += `padding: ${props.margins.top ?? 0}px ${props.margins.right ?? 0}px ${props.margins.bottom ?? 0}px ${props.margins.left ?? 0}px;`
+  }
+
+  return style
 })
 </script>
