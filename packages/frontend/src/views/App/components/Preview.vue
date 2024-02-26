@@ -17,30 +17,51 @@ const props = defineProps<{
   content: string
   pageSize: PrintInfo['pageSize']
   margins: PrintInfo['margins']
+  fontSize: PrintInfo['fontSize']
+  landscape: PrintInfo['landscape']
 }>()
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-watch(
-  () => [canvasRef.value, props.content],
-  () => {
-    if (!canvasRef.value || !props.content)
-      return
+async function renderContent() {
+  if (!canvasRef.value || !props.content)
+    return
 
-    QRCode.toCanvas(canvasRef.value, props.content, {
-      margin: 0,
-      width: 128,
-    })
+  // resize canvas
+  canvasRef.value.width = canvasRef.value.clientWidth
+  canvasRef.value.height = canvasRef.value.clientHeight
+
+  // clear canvas
+  const ctx = canvasRef.value.getContext('2d')!
+  ctx.clearRect(0, 0, canvasRef.value.width, canvasRef.value.height)
+
+  // draw qr code
+  const qrUrl = await QRCode.toDataURL(props.content, { margin: 0, width: 100 })
+  const img = new Image()
+  img.src = qrUrl
+  img.onload = () => {
+    ctx.drawImage(img, 0, 0)
+  }
+
+  // draw text
+  ctx.font = `${props.fontSize}px Dosis`
+  ctx.fillText(props.content, 0, 130)
+}
+
+watch(
+  () => [canvasRef.value, props.content, props.pageSize, props.fontSize, props.landscape, props.margins],
+  () => {
+    renderContent()
   },
-  { flush: 'post' },
+  { flush: 'post', deep: true },
 )
 
 const pageSizeStyle = computed(() => {
   let style = ''
   if (props.pageSize.name === 'Custom') {
-    style = `width: ${props.pageSize.size.width}px; height: ${props.pageSize.size.height}px;`
+    style = props.landscape ? `width: ${props.pageSize.size.height}px; height: ${props.pageSize.size.width}px;` : `width: ${props.pageSize.size.width}px; height: ${props.pageSize.size.height}px;`
   } else {
     const size = PAGE_SIZE[props.pageSize.name!]
-    style = `width: ${size.width}cm; height: ${size.height}cm;`
+    style = props.landscape ? `width: ${size.height}cm; height: ${size.width}cm;` : `width: ${size.width}cm; height: ${size.height}cm;`
   }
 
   if (props.margins.marginType === 'default') {

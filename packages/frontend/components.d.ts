@@ -19,5 +19,6 @@ declare module 'vue' {
     VarOption: typeof import('@varlet/ui')['_OptionComponent']
     VarSelect: typeof import('@varlet/ui')['_SelectComponent']
     VarSpace: typeof import('@varlet/ui')['_SpaceComponent']
+    VarSwitch: typeof import('@varlet/ui')['_SwitchComponent']
   }
 }

@@ -11,23 +11,37 @@ import { ref } from 'vue';
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 
-onPreparePrint((printInfo) => {
+onPreparePrint(async (printInfo) => {
   if (!canvasRef.value || !printInfo.content)
     return
 
-  QRCode.toCanvas(canvasRef.value, printInfo.content, {
-    margin: 0,
-    width: 128,
-  })
+  // resize canvas
+  canvasRef.value.width = canvasRef.value.clientWidth
+  canvasRef.value.height = canvasRef.value.clientHeight
+
+  // clear canvas
+  const ctx = canvasRef.value.getContext('2d')!
+  ctx.clearRect(0, 0, canvasRef.value.width, canvasRef.value.height)
+
+  // draw qr code
+  const qrUrl = await QRCode.toDataURL(printInfo.content, { margin: 0, width: 100 })
+  const img = new Image()
+  img.src = qrUrl
+  img.onload = () => {
+    ctx.drawImage(img, 0, 0)
+  }
+
+  // draw text
+  ctx.font = `${printInfo.fontSize}px Dosis`
+  ctx.fillText(printInfo.content, 0, 130)
 
   handlePrint()
 })
-
 
 </script>
 
 <style lang="scss">
 .printer-view {
-  @apply border border-solid border-gray-400 h-full w-full;
+  @apply h-full w-full;
 }
 </style>

@@ -9,7 +9,7 @@
         </var-select>
 
         <!-- Content -->
-        <var-input placeholder="Content" v-model="printInfo.content" />
+        <var-input placeholder="Content" v-model="printInfo.content" :maxlength="20" />
 
         <!-- Page Size -->
         <div>
@@ -27,6 +27,19 @@
                 label="Height" />
             </div>
           </template>
+        </div>
+
+        <!-- Landscape -->
+        <div>
+          <div class="text-13px text-stone-500 mr-5px w-50px">Landscape</div>
+          <var-switch v-model="printInfo.landscape" />
+        </div>
+
+        <!-- Font Size -->
+        <div>
+          <var-select placeholder="Font Size" v-model="printInfo.fontSize">
+            <var-option v-for="size in FONT_SIZE" :key="size" :value="size" :label="`${size}px`" />
+          </var-select>
         </div>
 
         <!-- Margins -->
@@ -56,6 +69,13 @@
             </div>
           </template>
         </div>
+
+        <!-- DPI -->
+        <div>
+          <var-select placeholder="DPI" v-model="printInfo.dpi">
+            <var-option v-for="d in DPI" :key="d" :value="d" :label="`${d} dpi`" />
+          </var-select>
+        </div>
       </var-space>
     </div>
 
@@ -76,7 +96,7 @@ import { onBeforeMount } from 'vue';
 import { Snackbar } from '@varlet/ui'
 import type { PrintInfo, PrinterInfo } from '@shared/types';
 import { toRaw } from 'vue';
-import { PAGE_SIZE } from './constants'
+import { PAGE_SIZE, FONT_SIZE, DPI } from './constants'
 import { computed } from 'vue';
 
 const printInfo = defineModel<PrintInfo>('printInfo', { required: true })

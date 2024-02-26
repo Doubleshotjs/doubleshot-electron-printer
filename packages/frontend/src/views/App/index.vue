@@ -26,7 +26,8 @@ const printInfo = ref<PrintInfo>({
     </div>
 
     <div style="width: calc(100% - 300px);">
-      <Preview :content="printInfo.content" :page-size="printInfo.pageSize" :margins="printInfo.margins" />
+      <Preview :content="printInfo.content" :landscape="printInfo.landscape" :page-size="printInfo.pageSize"
+        :margins="printInfo.margins" :font-size="printInfo.fontSize" />
     </div>
   </div>
 </template>

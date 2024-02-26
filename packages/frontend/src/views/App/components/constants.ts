@@ -10,3 +10,7 @@ export const PAGE_SIZE = {
   'Letter': { width: 21.6, height: 27.9 },
   'Tabloid': { width: 27.9, height: 43.2 },
 };
+
+export const FONT_SIZE = [12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
+
+export const DPI = [72, 96, 144, 200, 300, 600, 1200, 2400]
