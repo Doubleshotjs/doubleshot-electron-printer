@@ -8,14 +8,10 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     IFluentDismiss12Regular: typeof import('~icons/fluent/dismiss12-regular')['default']
-    IFluentDismiss24Regular: typeof import('~icons/fluent/dismiss24-regular')['default']
-    IFluentDismiss28Regular: typeof import('~icons/fluent/dismiss28-regular')['default']
     IFluentPrint28Regular: typeof import('~icons/fluent/print28-regular')['default']
     VarButton: typeof import('@varlet/ui')['_ButtonComponent']
-    VarCard: typeof import('@varlet/ui')['_CardComponent']
     VarCounter: typeof import('@varlet/ui')['_CounterComponent']
     VarInput: typeof import('@varlet/ui')['_InputComponent']
-    VarInputNumber: typeof import('@varlet/ui')['_InputNumberComponent']
     VarOption: typeof import('@varlet/ui')['_OptionComponent']
     VarSelect: typeof import('@varlet/ui')['_SelectComponent']
     VarSpace: typeof import('@varlet/ui')['_SpaceComponent']
