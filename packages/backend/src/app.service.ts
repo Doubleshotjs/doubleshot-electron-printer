@@ -39,8 +39,8 @@ export class AppService {
       })
 
       // open dev tools
-      this.mainWin.webContents.openDevTools({ mode: 'detach' })
-      this.printView.webContents.openDevTools({ mode: 'detach' })
+      // this.mainWin.webContents.openDevTools({ mode: 'detach' })
+      // this.printView.webContents.openDevTools({ mode: 'detach' })
     }
   }
 
