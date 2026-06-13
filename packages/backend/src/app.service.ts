@@ -1,13 +1,13 @@
 import { Window } from '@doubleshot/nest-electron'
 import { Injectable } from '@nestjs/common'
 import type { PrintInfo, PrinterInfo } from '@shared/types'
-import { screen, BrowserWindow, app, BrowserView } from 'electron'
+import { screen, BrowserWindow, app, WebContentsView } from 'electron'
 import { join } from 'path'
 import { ON_PREPARE_PRINT } from './ipc'
 
 @Injectable()
 export class AppService {
-  private readonly printView: BrowserView
+  private readonly printView: WebContentsView
   private currentPrintInfo: PrintInfo | null = null
 
   constructor(
@@ -15,7 +15,7 @@ export class AppService {
   ) {
     const isDev = !app.isPackaged
 
-    this.printView = new BrowserView({
+    this.printView = new WebContentsView({
       webPreferences: {
         contextIsolation: true,
         preload: join(__dirname, 'printer.preload.js') // <-- use pinter's preload
@@ -28,7 +28,7 @@ export class AppService {
 
     if (isDev) {
       // in dev mode, add the printView to the main window for preview
-      this.mainWin.setBrowserView(this.printView)
+      this.mainWin.contentView.addChildView(this.printView)
       // set the printView's position to the bottom right corner
       const { width, height } = this.mainWin.getBounds()
       this.printView.setBounds({ x: width - 300, y: height - 200, width: 300, height: 200 })

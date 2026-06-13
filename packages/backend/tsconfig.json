@@ -5,16 +5,12 @@
     "jsx": "preserve",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "baseUrl": ".",
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "Node16",
+    "moduleResolution": "node16",
     "paths": {
-      "@src/*": [
-        "src/*"
-      ],
-      "@shared/*": [
-        "../shared/*"
-      ]
+      "*": ["./*"],
+      "@src/*": ["./src/*"],
+      "@shared/*": ["./../shared/*"]
     },
     "resolveJsonModule": true,
     "strict": false,
@@ -28,6 +24,6 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
-    "../shared/**/*.ts",
+    "../shared/**/*.ts"
   ]
 }

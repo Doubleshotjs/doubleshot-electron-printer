@@ -9,17 +9,7 @@
     "build": "rimraf dist && dsr build"
   },
   "devDependencies": {
-    "@doubleshot/runner": "^0.0.16",
-    "@types/node": "25.3.2"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@nestjs/core",
-      "@parcel/watcher",
-      "@swc/core",
-      "electron",
-      "electron-winstaller",
-      "esbuild"
-    ]
+    "@doubleshot/runner": "^0.0.20",
+    "@types/node": "25.9.3"
   }
 }

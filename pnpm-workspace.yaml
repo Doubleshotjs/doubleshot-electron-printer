@@ -1,2 +1,32 @@
 packages:
   - 'packages/*'
+allowBuilds:
+  '@nestjs/core': true
+  '@parcel/watcher': true
+  '@swc/core': true
+  electron: true
+  electron-winstaller: true
+  esbuild: true
+minimumReleaseAgeExclude:
+  - '@unocss/cli@66.7.2'
+  - '@unocss/config@66.7.2'
+  - '@unocss/core@66.7.2'
+  - '@unocss/extractor-arbitrary-variants@66.7.2'
+  - '@unocss/inspector@66.7.2'
+  - '@unocss/preset-attributify@66.7.2'
+  - '@unocss/preset-icons@66.7.2'
+  - '@unocss/preset-mini@66.7.2'
+  - '@unocss/preset-tagify@66.7.2'
+  - '@unocss/preset-typography@66.7.2'
+  - '@unocss/preset-uno@66.7.2'
+  - '@unocss/preset-web-fonts@66.7.2'
+  - '@unocss/preset-wind3@66.7.2'
+  - '@unocss/preset-wind4@66.7.2'
+  - '@unocss/preset-wind@66.7.2'
+  - '@unocss/rule-utils@66.7.2'
+  - '@unocss/transformer-attributify-jsx@66.7.2'
+  - '@unocss/transformer-compile-class@66.7.2'
+  - '@unocss/transformer-directives@66.7.2'
+  - '@unocss/transformer-variant-group@66.7.2'
+  - '@unocss/vite@66.7.2'
+  - unocss@66.7.2
